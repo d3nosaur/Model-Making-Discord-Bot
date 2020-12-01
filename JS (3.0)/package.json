@@ -1,0 +1,21 @@
+{
+  "name": "Model Making Bot",
+  "version": "3.0.0",
+  "description": "Bot to create tickets",
+  "main": "index.js",
+  "scripts": {
+    "test": "hi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Infrastructure_Model-Making-Discord-Bot"
+  },
+  "keywords": [
+    "model"
+  ],
+  "author": "Deno",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}

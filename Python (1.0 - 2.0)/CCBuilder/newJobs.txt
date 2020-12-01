@@ -1,0 +1,246 @@
+This file would contains the jobs automatically formatted in a way that we can copy paste them directly into the game without having to write it every time.
+
+TEAM_ABARAZ = DarkRP.createJob("Marvasa's Marauders Abaraz", {
+    color = Color(77, 0, 0),
+    model = "models/player/swtor/arsenic/nook/nook.mdl",
+    description = [[Abaraz (Kiyo'abara'zoyan) is a Chiss female that joined the Republic Mercenaries and then later the Marauders. She left her Chiss family's solitary nature to enlist in a war she believed in, on top of the pay that is.]],
+    weapons = {"tfa_fc3bd_fazertron", "salute_swep"},
+    command = "abaraz",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+    PlayerSpawn = function(ply)
+        ply:SetHealth(175)
+        ply:SetMaxHealth(175)
+        ply:SetArmor(50)
+    end,
+    customCheck = function(ply)
+        return ply:IsPremium() or ply:IsPrime()
+    end,
+    customCheckFailMsg = "You do not have Premium!"
+})
+TEAM_RYNNNAMAS = DarkRP.createJob("Mercenary Rynn namas", {
+	color = Color(135, 206, 250),
+    model = "models/jazzmcfly/jka/dv/dv.mdl",
+    description = [[A Devaronian born on the planet Corellia, he joined with a local smugglers ring and traveled the galaxy]],
+	weapons = {"tfa_kotor_bp_4", "tfa_kotor_repeaten_2", "salute_swep"},
+    command = "rynnnamas",
+    max = 1,
+	salary = 20,
+	admin = 0,
+	vote = false,
+	hasLicense = false,
+    category = "Custom Jobs",
+	PlayerSpawn = function(ply)
+		ply:SetHealth(175)
+		ply:SetMaxHealth(175)
+		ply:SetArmor(50)
+	end,
+
+    customCheck = function(ply)
+
+        return ply:IsPremium() or ply:IsPrime()
+
+    end,
+
+    customCheckFailMsg = "You do not have Premium!"
+
+})
+TEAM_UTHRED = DarkRP.createJob("Jedi Uthred", {
+    color = Color(0, 114, 24),
+    model = "i think he replied on the other channel and it came up like that",
+    description = [[He was a baby when his village was raided when the republic found the village they found only one survivor a force sensitive baby.]],
+    weapons = {"weapon_lightsaber_personal", "wos_inventory", "jediordercard_knight"},
+    command = "uthred",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+
+    PlayerSpawn = function(ply)
+
+        ply:SetMaxHealth(1250)
+
+        ply:SetHealth(1250)
+
+    end,
+
+    --[[BWhitelist_customCheck = function(ply)
+
+        return ply:IsPremium() == true
+
+    end,]]--
+
+    customCheckFailMsg = "You do not have Premium!"
+
+})
+TEAM_STRIKER = DarkRP.createJob("104th ARC Striker", {
+    color = Color(80, 80, 80),
+    model = "models/player/harris clone/104th_arc.mdl",
+    description = [[Being dispatched with smaller squads of 104th, Striker lead many clones to victory through tough situations, always helping those in need and going above and beyond in his practices. Striker always wanted to train more and get better through any means he could, this being noticed by Commander Wolffe, was sent through the ARC program, after rigorous training and learning, he  finally came out of the program as a 104th ARC.]],
+    weapons = {"tfa_relby","tfa_dc15s_ashura","climb_swep2", "tfa_sw_dc17dual_arc", "stim_pistol", "salute_swep", "clone_card_c2" },
+    command = "striker",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+    PlayerSpawn = function(ply)
+        ply:SetHealth (200)
+        ply:SetMaxHealth (200)
+        ply:SetArmor (50)
+    end
+})
+TEAM_MAV = DarkRP.createJob("Jedi Mav", {
+    color = Color(0, 114, 24),
+    model = "Couldnt find the model in the Q menu for some reason",
+    description = [[Keep it the same]],
+    weapons = {"weapon_lightsaber_personal", "wos_inventory", "jediordercard_knight"},
+    command = "mav",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+
+    PlayerSpawn = function(ply)
+
+        ply:SetMaxHealth(1250)
+
+        ply:SetHealth(1250)
+
+    end,
+
+    --[[BWhitelist_customCheck = function(ply)
+
+        return ply:IsPremium() == true
+
+    end,]]--
+
+    customCheckFailMsg = "You do not have Premium!"
+
+})
+TEAM_SKITARI = DarkRP.createJob("Antarian Ranger Skitari", {
+    color = Color(0, 114, 24),
+    model = "models/xmp/player/artemis_pilot.mdl",
+    description = [[Antarian Ranger Skitari]],
+    weapons = {"tfa_swch_de10", "tfa_wsp_3", "climb_swep2", "salute_swep", "tw_smokegrenade_swep"},
+    command = "skitari",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+    PlayerSpawn = function(ply)
+        ply:SetMaxHealth(200)
+        ply:SetHealth(200)
+        ply:SetArmor(150)
+        local ent = ents.Create( "assault_jumppack" )
+          ent:SetSlotName( "assault_jumppack" )	--this is the best place to set the slot, only modify it ingame when it's not equipped
+          ent:SetPos( ply:GetPos() )
+          ent:SetAngles( Angle( 0 , 0 , 180 ) )
+          ent:Spawn()
+          ent:Attach( ply, false )
+          if !ent:IsAttached() then
+             ent:Remove()
+          end
+    end,
+    customCheck = function(ply)
+        return ply:IsPremium() or ply:IsPrime()
+    end,
+    customCheckFailMsg = "You do not have Premium!"
+})
+TEAM_TORN = DarkRP.createJob("Carnivore Trooper Torn", {
+	color = Color(0, 0, 205),
+    model = "models/player/cblake/dev_team_alpha/charger.mdl",
+    description = [[Torn, Clone trooper of the 501st.]],
+    weapons = {"meleearts_blade_throwingknife_carnivore", "tfa_dc15s_ashura", "salute_swep", "clone_card_c1", "tfa_swch_dc15a_carnivore", "alydus_fusioncutter"},
+    command = "torn",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+    PlayerSpawn = function(ply)
+        ply:SetHealth (175)
+        ply:SetMaxHealth (175)
+        ply:SetArmor (25)
+        ply:setDarkRPVar("job", "501st Carnivore Trooper")
+    end
+
+})
+TEAM_TARGET = DarkRP.createJob("327th Trooper Target", {
+    color = Color(128, 128, 0),
+    model = "models/player/target clone/target clone.mdl",
+    description = [[CT-2012 is a misfit that been in the 327th Star Corps. longer than someone called Brawl]],
+    weapons = {"tfa_dc15s_ashura", "tfa_dlt19_extended", "salute_swep", "clone_card_c1"},
+    command = "target",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+    PlayerSpawn = function(ply)
+        ply:SetHealth (200)
+        ply:SetMaxHealth (200)
+        ply:SetArmor (100)
+    end
+})
+TEAM_ALUCARD = DarkRP.createJob("Jedi Alucard", {
+    color = Color(0, 114, 24),
+    model = "models/player/swtor/arsenic/zeus/zeus.mdl",
+    description = [[Knight Alucard of the Jedi Order]],
+    weapons = {"weapon_lightsaber_personal", "wos_inventory", "jediordercard_knight"},
+    command = "alucard",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+
+    PlayerSpawn = function(ply)
+
+        ply:SetMaxHealth(1250)
+
+        ply:SetHealth(1250)
+
+    end,
+
+    --[[BWhitelist_customCheck = function(ply)
+
+        return ply:IsPremium() == true
+
+    end,]]--
+
+    customCheckFailMsg = "You do not have Premium!"
+
+})
+TEAM_CANDLEWAX = DarkRP.createJob("212th ARF Candlewax", {
+    color = Color(255, 140, 0),
+    model = "models/player/candlewax/arf.mdl",
+    description = [[Candlewax earned his name from the many Candle Wax Sculptures he's created over his lifespan. Crude at first, they became better over time. From other troopers helmets to even Jedi Lightsabers. His attention to detail has helped him in many ways.]],
+    weapons = {"tfa_sw_repsnip", "tfa_dc15s_ashura", "climb_swep2_arf", "tfa_swch_dc15a_scoped", "salute_swep", "clone_card_c1"},
+    command = "candlewax",
+    max = 1,
+    salary = 20,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    category = "Custom Jobs",
+    PlayerSpawn = function(ply)
+        ply:SetHealth(125)
+        ply:SetMaxHealth(125)
+        ply:SetArmor(25)
+    end
+})
