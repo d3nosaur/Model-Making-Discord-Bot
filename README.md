@@ -7,4 +7,4 @@ Javascript Version:
   The more up to date and better looking one, has more discord features but lacks some spreadsheet support
  
 Python Version:
-  Made as a rough concept for what I wanted the bot to do, not modular. Has support to automatically build the Custom Class files and send the data to Spreadsheets
+  Made as a rough concept for what I wanted the bot to do, not modular. Has support to automatically build the job files and send the data to Spreadsheets
