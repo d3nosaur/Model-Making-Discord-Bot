@@ -7,7 +7,7 @@ const Discord = require('discord.js');
  * @param {string} text Description in the embed.
  */
 function EasyEmbedSend(channel, header, text) {
-	const Embed = EasyEmbed(header, text, '#a430fc');
+	const Embed = EasyEmbed(header, text, '#a430fc'); // Creates and sends embed to the channel specified
 	channel.send(Embed);
 }
 
@@ -16,7 +16,7 @@ function EasyEmbedSend(channel, header, text) {
  * @param {args} args All arguments to enter into the error.
  */
 function ConsoleError(...args) {
-	console.log('[ERROR] ' + args);
+	console.log('[ERROR] ' + args); // Not sure why I made this
 }
 
 /**
@@ -26,7 +26,7 @@ function ConsoleError(...args) {
  * @param {string} color Hex Value for the Color.
  */
 function EasyEmbed(header, text, color) {
-	const Embed = new Discord.MessageEmbed()
+	const Embed = new Discord.MessageEmbed() // Creates and returns an embed
 		.setColor(color)
 		.setTitle(header)
 		.setDescription(text);
@@ -40,12 +40,13 @@ function EasyEmbed(header, text, color) {
  * @param {array<string>} roles Roles to check.
  */
 function HasRole(user, roles) {
-	let result = false;
-	roles.forEach(element => {
-		if(user.roles.cache.some(role => role.name.toLowerCase() === element.toLowerCase())) {
+	let result = false; // Boolean for later on
+	roles.forEach(element => { // Iterates over all of the roles in the server
+		if(user.roles.cache.some(role => role.name.toLowerCase() === element.toLowerCase())) { // If the user has the current role, switch result to true
 			result = true;
 		}
 	});
+
 	return result;
 }
 
@@ -55,19 +56,19 @@ function HasRole(user, roles) {
  * @param {String} name 
  */
 function GetCategory(guild, name) {
-	let category;
+	let category; // Placeholder Variable
 
-	guild.channels.cache.forEach(channel => { // Attempts to get the category to put the ticket into
-		if(channel == null || channel.name == null) {
+	guild.channels.cache.forEach(channel => { // Iterates over all of the channels (Includes Category Channels)
+		if(channel == null || channel.name == null) { // If the channel is bugged disregard
 			return;
 		}
 
-		if(channel.name == name) {
+		if(channel.name == name) { // If the current channels name is the name we want then replace the placeholder variable with it
 			category = channel;
 		}
 	});
 
-	if(category) {
+	if(category) {  // If it found a category return the category, if not return false
 		return category;
 	} else {
 		return false;
@@ -80,7 +81,7 @@ function GetCategory(guild, name) {
  * @param {String} name 
  */
 function GetChannel(category, name) {
-	let channel;
+	let channel; // Same as GetCategory but iterates over a category instead of the server
 
 	category.children.forEach(ichannel => {
 		if(ichannel == null || ichannel.name == null) {
@@ -104,23 +105,23 @@ function GetChannel(category, name) {
  * @param {TextChannel} channel 
  */
 function ArchiveChannel(channel) {
-	const category = GetCategory(channel.guild, 'archive')
+	const category = GetCategory(channel.guild, 'archive') // Finds the category called "archive"
 
-    if(category != false) {
-        EasyEmbedSend(channel, 'Archive', 'Moving this channel to the Archived Section');
+    if(category != false) { // If the category exists
+        EasyEmbedSend(channel, 'Archive', 'Moving this channel to the Archived Section'); // Gives a warning message
 
-        channel.setParent(category);
-        channel.edit({permissionOverwrites: [{
+        channel.setParent(category); // Moves the channel
+        channel.edit({permissionOverwrites: [{ // Change the permissions to only allow admins
             id: '493222560453099520',
 			deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
         }]});
         channel.setPosition(category.children.keyArray().length+1)
     } else {
-        EasyEmbedSend(channel, 'Archive Command', 'Can not find category called "archive"');
+        EasyEmbedSend(channel, 'Archive Command', 'Can not find category called "archive"'); // Error Message
     }
 }
 
-module.exports = {
+module.exports = { // Exports
 	EasyEmbedSend: EasyEmbedSend,
 	ConsoleError: ConsoleError,
 	EasyEmbed: EasyEmbed,

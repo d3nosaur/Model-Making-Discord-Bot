@@ -21,6 +21,6 @@ pages[6] = {
 	text: 'Your answers have been sent to the Model Makers.',
 };
 
-TicketHandler.RegisterNewTicket('commission', (msg) => {
+TicketHandler.RegisterNewTicket('commission', (msg) => { // Approval Ticket has descriptions
 	return true
 }, 6, pages, '720828275005587476', ['493223081746235393', '729544201502457918', '493502129915559936', '493223241691955232']);

@@ -4,17 +4,17 @@ const CommandHandler = require('../CommandHandler.js'), BaseFunctions = require(
  * Displays a message if the bot is alive
  */
 CommandHandler.RegisterNewCommand('claim', ['Model Maker', 'Senior Model Maker', 'Head Model Maker'], (msg) => {
-	const channel = msg.channel;
+	const channel = msg.channel; // Get the channel the message was sent in
 
-	if(!channel.name.startsWith('commission-ticket')) {
+	if(!channel.name.startsWith('commission-ticket')) { // Checks if the ticket is a commission ticket
 		BaseFunctions.EasyEmbedSend(channel, 'Command Error', 'Command was not sent in an commission ticket.');
 		return;
-	} else if(channel.parent.name == 'Claimed Commission Tickets') {
+	} else if(channel.parent.name == 'Claimed Commission Tickets') { // Makes sure it isn't already claimed
 		BaseFunctions.EasyEmbedSend(channel, 'Command Error', 'Ticket has already been claimed.');
 		return;
 	}
 
-	let ticketCreator;
+	let ticketCreator; // Finds the creator of the ticket
 	channel.members.forEach(member => {
 		if(member.user == undefined || member.user.username == undefined) return;
 
@@ -23,12 +23,12 @@ CommandHandler.RegisterNewCommand('claim', ['Model Maker', 'Senior Model Maker',
 		}
 	})
 
-	const category = BaseFunctions.GetCategory(msg.guild, 'Claimed Commission Tickets');
+	const category = BaseFunctions.GetCategory(msg.guild, 'Claimed Commission Tickets'); // Finds the claimed tickets category
 
-	if(category != false) {
+	if(category != false) { // If the category exists
         BaseFunctions.EasyEmbedSend(channel, 'Commission Ticket', 'This ticket has been claimed by **' + msg.author.username + '**\n\nWhen this ticket is finished, ask the model maker to use !finish to finish the ticket process\nIf you would like to switch model makers, enter !unclaim into this channel');
 
-        channel.setParent(category);
+        channel.setParent(category); // Edit channel permissions to remove other model makers
         channel.edit({permissionOverwrites: [{
             id: '493222560453099520',
 			deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],

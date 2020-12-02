@@ -18,6 +18,6 @@ pages[5] = {
 	text: 'Your responses have been sent to Affairs for approval',
 };
 
-TicketHandler.RegisterNewTicket('approval', (msg) => {
-	return true
-}, 5, pages, '720828274946867220', ['493223081746235393', '729544201502457918', '493502129915559936']);
+TicketHandler.RegisterNewTicket('approval', (msg) => { // Register the ticket 'approval' with a callback whenever the ticket is started/continued
+	return true // Callback, return true to allow next stage
+}, 5, pages, '720828274946867220', ['493223081746235393', '729544201502457918', '493502129915559936']); // NumPages, Pages Array, Emoji ID (Uses emojis to start tickets), Array of roles that can see the ticket

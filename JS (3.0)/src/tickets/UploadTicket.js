@@ -34,12 +34,11 @@ pages[10] = {
 	text: 'Your responses have been sent to the Developers',
 };
 
-// Never touch anything below this, it is scary async await sync that for some reason works 99% of the time
-
+// Warning, don't try to mess with the stuff below this unless you understand async threads a lot more than I do
 function CalcResponse(msg, Responses, Answer) {
     if(Answer == undefined) return false
 
-    let NumberText;
+    let NumberText; // Turn the page number into the pages question
 
     switch(parseInt(msg.embeds[0].footer.text.substr(6, 1), 10) - 1) {
         case 1:
@@ -68,49 +67,46 @@ function CalcResponse(msg, Responses, Answer) {
             break;
     }
 
-    if(Responses == undefined) {
-        const Embed = new Discord.MessageEmbed()
+    if(Responses == undefined) { // If responses doesnt exist, create it
+        const Embed = new Discord.MessageEmbed() // Create the embed and add a field for the answer
             .setColor('#56c4f0')
             .setTitle('Responses')
             .setDescription('A List of the Responses for this Upload Ticket')
             .addFields(
                 { name: NumberText, value: Answer.content},
             )
+        msg.channel.send({embed: Embed}); // Send the embed
 
-        msg.channel.send({embed: Embed});
+        Answer.delete(); // Delete the message for the answer
 
-        Answer.delete();
+        return true // Continue to next page
+    } else { // If the responses do exist
+        const Embed = Responses.embeds[0]; // Grab the embed
+        Embed.addField(NumberText, Answer.content) // Add the field for the answer
+        Responses.edit({embed: Embed}); // Edit the embed
 
-        return true
-    } else {
-        const Embed = Responses.embeds[0];
+        Answer.delete(); // Delete the answer message
 
-        Embed.addField(NumberText, Answer.content)
-
-        Responses.edit({embed: Embed});
-
-        Answer.delete();
-
-        return true
+        return true // Continue
     }
 }
 
-TicketHandler.RegisterNewTicket('upload', async (msg) => {
-    if(msg.embeds[0].footer.text.substr(6, 1) == 1) return true
+TicketHandler.RegisterNewTicket('upload', async (msg) => { // Approval Ticket has descriptions | Upload Ticket is complicated because we need to log the answers
+    if(msg.embeds[0].footer.text.substr(6, 1) == 1) return true // If its the first page don't need to log answer because there wont be an answer
 
-    let Responses;
-    let Answer;
+    let Responses; // Overall Responses Message
+    let Answer; // Answer to current question
 
     return await msg.channel.messages.fetch({ limit: 100 }).then( async (messages) => {
-        messages.forEach(message => {
+        messages.forEach(message => { // Try to find the responses message
             if(message.author.bot && message.embeds[0].title == 'Responses') {
                 Responses = message
             }
-            if(!message.author.bot) {
+            if(!message.author.bot) { // Find any answer that isnt from a bot, any one that applies here should be the answer
                 Answer = message
             }
         });
-        const response = CalcResponse(msg, Responses, Answer)
+        const response = CalcResponse(msg, Responses, Answer) // Edit responses message to include new answer
         return response
     });
 }, 10, pages, '720828274980421742', ['493223081746235393', '729544201502457918', '493502129915559936']);

@@ -1,7 +1,7 @@
 const CommandHandler = require('../CommandHandler.js'), BaseFunctions = require('../BaseFunctions.js');
 
 /**
- * Displays a message if the bot is alive
+ * Doesn't Work
  */
 CommandHandler.RegisterNewCommand('unclaim', ['Everyone'], (msg) => {
 	const channel = msg.channel;

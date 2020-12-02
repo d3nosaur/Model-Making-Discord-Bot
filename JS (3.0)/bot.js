@@ -2,7 +2,7 @@ const Discord = require('discord.js'), CommandHandler = require('./src/CommandHa
 const BaseFunctions = require('./src/BaseFunctions.js');
 const Client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 
-Client.once('ready', () => {
+Client.once('ready', () => { // Runs when the bot turns on
 	console.log('Ready!');
 });
 
@@ -18,20 +18,21 @@ require('./src/commands/Archive.js');
 require('./src/commands/Approve.js');
 require('./src/commands/Claim.js');
 require('./src/commands/Unclaim.js');
+
 // Tickets
 require('./src/tickets/ApprovalTicket.js');
 require('./src/tickets/CommissionTicket.js');
 require('./src/tickets/UploadTicket.js')
 
-Client.on('message', message => { // Command Handler
+Client.on('message', message => { // Command Handler | Whenever someone sends a message it redirects the message to the Command Handler.
 	CommandHandler.HandleMessage(Client, message);
 });
 
-Client.on("messageReactionAdd", async (reaction, user) => { // Ticket Handler
-    if (user.bot)
+Client.on("messageReactionAdd", async (reaction, user) => { // Ticket Handler | Whenever someone reacts to a message it tells the Ticket Handler to handle it
+    if (user.bot) // If a bot reacted, disregard
         return;
 
-    if (reaction.partial) {
+    if (reaction.partial) { 
         try {
             await reaction.fetch();
         }
@@ -41,6 +42,6 @@ Client.on("messageReactionAdd", async (reaction, user) => { // Ticket Handler
         }
     }
 
-    //reaction.message.react(reaction.emoji);
-	TicketHandler.HandleReactions(user, reaction, reaction.message.guild);
+    //reaction.message.react(reaction.emoji); // Was used to initially give the tickets their reactions
+	TicketHandler.HandleReactions(user, reaction, reaction.message.guild); 
 });
