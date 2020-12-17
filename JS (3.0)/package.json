@@ -1,21 +1,14 @@
 {
-  "name": "Model Making Bot",
+  "name": "model-bot-js",
   "version": "3.0.0",
-  "description": "Bot to create tickets",
-  "main": "index.js",
+  "description": "Model Bot made by Deno",
+  "main": "bot.js",
   "scripts": {
-    "test": "hi"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "Infrastructure_Model-Making-Discord-Bot"
-  },
-  "keywords": [
-    "model"
-  ],
   "author": "Deno",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.5.1"
   }
 }

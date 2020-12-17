@@ -143,6 +143,9 @@ function HandleReactions(user, reaction, guild) {
 		return
 	}
 
+	if(reaction.message.embeds[0] == null)
+		return;
+		
 	if(reaction.message.embeds[0].title.endsWith('Ticket ' + user.username) && reaction.emoji.id == TicketArray[reaction.message.channel.name.substr(0, reaction.message.channel.name.indexOf('-'))].emojiid) { // A bunch of junk to see if it's a ticket
 		ContinueTicket(user, reaction.message.channel.name.substr(0, reaction.message.channel.name.indexOf('-')), reaction.message, guild)
 		reaction.users.remove(user.id)

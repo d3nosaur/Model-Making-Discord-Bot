@@ -1,9 +1,14 @@
-const Discord = require('discord.js'), CommandHandler = require('./src/CommandHandler.js'), TicketHandler = require('./src/TicketHandler.js');
+const Discord = require('discord.js')
+
+const CommandHandler = require('./src/CommandHandler.js')
+const TicketHandler = require('./src/TicketHandler.js');
+const ReactionRoleHandler = require('./src/ReactionRoleHandler.js')
+
 const BaseFunctions = require('./src/BaseFunctions.js');
 const Client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 
 Client.once('ready', () => { // Runs when the bot turns on
-	console.log('Ready!');
+    console.log('Ready!');
 });
 
 Client.login(''); // Input login code
@@ -24,6 +29,8 @@ require('./src/tickets/ApprovalTicket.js');
 require('./src/tickets/CommissionTicket.js');
 require('./src/tickets/UploadTicket.js')
 
+require('./src/reactionrole/MemberReaction.js')
+
 Client.on('message', message => { // Command Handler | Whenever someone sends a message it redirects the message to the Command Handler.
 	CommandHandler.HandleMessage(Client, message);
 });
@@ -41,7 +48,8 @@ Client.on("messageReactionAdd", async (reaction, user) => { // Ticket Handler | 
             return;
         }
     }
-
     //reaction.message.react(reaction.emoji); // Was used to initially give the tickets their reactions
+
+    ReactionRoleHandler.HandleReactions(user, reaction, reaction.message.guild);
 	TicketHandler.HandleReactions(user, reaction, reaction.message.guild); 
 });
