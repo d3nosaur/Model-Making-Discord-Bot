@@ -5,13 +5,10 @@ const TicketHandler = require('./src/TicketHandler.js');
 const ReactionRoleHandler = require('./src/ReactionRoleHandler.js')
 
 const BaseFunctions = require('./src/BaseFunctions.js');
-const Client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
+const Client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"], fetchAllMembers: true });
+const config = require('./config.json')
 
-Client.once('ready', () => { // Runs when the bot turns on
-    console.log('Ready!');
-});
-
-Client.login(''); // Input login code
+Client.login(config.token); // Input login code
 
 // Commands
 require('./src/commands/HelpCommand.js');
@@ -23,6 +20,8 @@ require('./src/commands/Archive.js');
 require('./src/commands/Approve.js');
 require('./src/commands/Claim.js');
 require('./src/commands/Unclaim.js');
+const Mute = require('./src/commands/Mute.js')
+require('./src/commands/Unmute.js')
 
 // Tickets
 require('./src/tickets/ApprovalTicket.js');
@@ -34,6 +33,12 @@ require('./src/reactionrole/MemberReaction.js')
 Client.on('message', message => { // Command Handler | Whenever someone sends a message it redirects the message to the Command Handler.
 	CommandHandler.HandleMessage(Client, message);
 });
+
+Client.on('ready', async () => {
+    console.log('The client is ready!')
+  
+    Mute(Client)
+})
 
 Client.on("messageReactionAdd", async (reaction, user) => { // Ticket Handler | Whenever someone reacts to a message it tells the Ticket Handler to handle it
     if (user.bot) // If a bot reacted, disregard

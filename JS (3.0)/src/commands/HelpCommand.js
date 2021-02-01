@@ -20,4 +20,4 @@ CommandHandler.RegisterNewCommand('help', ['Everyone'], (msg) => {
 	}
 
 	msg.channel.send(helpEmbed);
-}, 'Displays information on all of Frederick\'s commands.', '!help', 'Deno: !helps');
+}, 'Displays information on all of Frederick\'s commands.', '!help', 'Deno: !help');
