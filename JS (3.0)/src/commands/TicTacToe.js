@@ -65,7 +65,7 @@ module.exports = (client) => {
         for(var i=0; i<3; i++) {
             if(board[0+(i*3)] == board[1+(i*3)] && board[1+(i*3)] == board[2+(i*3)] && board[0+(i*3)] != 0) {
                 return board[0+(i*3)]
-            } else if(board[i] == board[i+3] && board[i+3] && board[i+6] && board[i] != 0) {
+            } else if(board[i] == board[i+3] && board[i+3] == board[i+6] && board[i] != 0) {
                 return board[i]
             }
         }
