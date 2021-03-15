@@ -49,4 +49,4 @@ CommandHandler.RegisterNewCommand('claim', ['Model Maker', 'Senior Model Maker',
     } else {
         BaseFunctions.EasyEmbedSend(channel, 'Commission Error', 'Can not find category called "Claimed Commission Tickets"');
     }
-}, 'Claims the commission that the message was sent in.', '!claim', 'Deno: !claim');
+}, 'Claims the commission that the message was sent in.', '!claim', 'Deno: !claim', "Model Making");

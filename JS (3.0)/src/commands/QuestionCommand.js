@@ -31,4 +31,4 @@ CommandHandler.RegisterNewCommand('?', ['Everyone'], (msg) => {
       .setDescription("**Description:** " + command.description + "\n" + '**Usage:** ' + command.usage + "\n" + '**Examples:** ' + command.examples + "\n" + "**Roles Required**: " + command.RolesRequired);
 
 	  msg.channel.send(helpEmbed);
-}, "Displays extra information on certain commands", '!? botalive', 'Deno: !? botalive');
+}, "Displays extra information on certain commands", '!? <command>', 'Deno: !? botalive', "General");

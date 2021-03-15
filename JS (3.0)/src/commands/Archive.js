@@ -6,4 +6,4 @@ const CommandHandler = require('../CommandHandler.js'), BaseFunctions = require(
  */
 CommandHandler.RegisterNewCommand('archive', ['Senior Model Maker', 'Head Model Maker', 'Affairs Clearance'], (msg) => {
     BaseFunctions.ArchiveChannel(msg.channel)
-}, 'Moves the channel the command\'s message was sent in to the archives, removes general permissions', '!archive', 'Deno: !archive');
+}, 'Moves the channel the command\'s message was sent in to the archives, removes general permissions', '!archive', 'Deno: !archive', "Model Making");

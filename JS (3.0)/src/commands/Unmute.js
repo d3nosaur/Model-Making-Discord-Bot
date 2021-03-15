@@ -26,4 +26,4 @@ CommandHandler.RegisterNewCommand('unmute', ['Discord Admin'], async (msg) => {
     } finally {
         redisClient.quit()
     }
-}, 'Unmutes a player.', '!unmute <player>', 'Deno: !unmute @Sim');
+}, 'Unmutes a player.', '!unmute <player>', 'Deno: !unmute @Sim', "Admin");

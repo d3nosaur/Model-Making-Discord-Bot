@@ -8,7 +8,8 @@ const Discord = require('discord.js');
  */
 function EasyEmbedSend(channel, header, text) {
 	const Embed = EasyEmbed(header, text, '#a430fc'); // Creates and sends embed to the channel specified
-	channel.send(Embed);
+	const message = channel.send(Embed)
+	return message
 }
 
 /**

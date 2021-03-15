@@ -30,4 +30,4 @@ CommandHandler.RegisterNewCommand('approve', ['Senior Model Maker', 'Head Model 
 	})
 
 	BaseFunctions.ArchiveChannel(curChannel); // Archive the approval ticket
-}, 'Approves the ticket that the message was sent in', '!approve', 'Deno: !approve');
+}, 'Approves the ticket that the message was sent in', '!approve', 'Deno: !approve', "Model Making");

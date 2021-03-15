@@ -25,10 +25,10 @@ function HandleReactions(user, reaction, guild) {
 
     for(const reactionrole in ReactionRoleArray) {
         if(ReactionRoleArray[reactionrole].messageid == reaction.message.id) {
-            if(ReactionRoleArray[reactionrole].emojiid == reaction.emoji.id)
+            if(ReactionRoleArray[reactionrole].emojiid != reaction.emoji.id) {
+                reaction.users.remove(user.id);
                 return;
-
-            reaction.users.remove(user.id);
+            }
         }
 
         if(ReactionRoleArray[reactionrole].emojiid == reaction.emoji.id && ReactionRoleArray[reactionrole].messageid == reaction.message.id) {
@@ -37,9 +37,37 @@ function HandleReactions(user, reaction, guild) {
             if(member == null)
                 Functions.ConsoleError('Role Reaction User Null')
 
-            member.roles.add(ReactionRoleArray[reactionrole].roleid, "Rules Read");
+            member.roles.add(ReactionRoleArray[reactionrole].roleid, "Reaction Roles");
             
             console.log('Applying roles to user')
+            return;
+        }
+    }
+}
+
+function HandleRemoveReactions(user, reaction, guild) {
+    if(user == null || reaction == null) {
+        Functions.ConsoleError('Reaction Remove ' + reaction.emoji.id + ' returned null.');
+        return;
+    }
+
+    for(const reactionrole in ReactionRoleArray) {
+        if(ReactionRoleArray[reactionrole].messageid == reaction.message.id) {
+            if(ReactionRoleArray[reactionrole].emojiid != reaction.emoji.id) {
+                reaction.users.remove(user.id);
+                return;
+            }
+        }
+
+        if(ReactionRoleArray[reactionrole].emojiid == reaction.emoji.id && ReactionRoleArray[reactionrole].messageid == reaction.message.id) {
+            const member = guild.member(user);
+
+            if(member == null)
+                Functions.ConsoleError('Role Reaction User Null')
+
+            member.roles.remove(ReactionRoleArray[reactionrole].roleid, "Reaction Roles");
+            
+            console.log('Removing Roles from User')
             return;
         }
     }
@@ -53,4 +81,5 @@ module.exports = {
     RegisterNewReactionRole: RegisterNewReactionRole,
     GetRegisteredTickets: GetRegisteredTickets,
     HandleReactions: HandleReactions,
+    HandleRemoveReactions: HandleRemoveReactions,
 };

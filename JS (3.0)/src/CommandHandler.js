@@ -11,7 +11,7 @@ const CommandArray = {};
  * @param {string} [usage=] The argument usage template.
  * @param {Array<string>} [examples=] Example(s) of how to use the command.
  */
-function RegisterNewCommand(name, RolesRequired, callback, description, usage, examples) {
+function RegisterNewCommand(name, RolesRequired, callback, description, usage, examples, category) {
 	if(CommandArray[name]) { // If command already exists, don't create command again
 		Functions.ConsoleError('Command ' + name + ' can not be initialized due to it already existing.');
 		return
@@ -23,6 +23,7 @@ function RegisterNewCommand(name, RolesRequired, callback, description, usage, e
 		description: description ? description : 'No description provided.',
 		usage: usage ? usage : 'No usage provided.',
 		examples: examples ? examples : ['No examples provided.'],
+		category: category ? category : 'General',
 	};
 }
 

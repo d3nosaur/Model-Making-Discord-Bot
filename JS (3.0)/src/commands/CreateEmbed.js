@@ -21,4 +21,4 @@ CommandHandler.RegisterNewCommand('createembed', ['Discord Admin'], (msg) => {
 
     const embed = BaseFunctions.EasyEmbed(title, body, color); // Sends embed
     msg.channel.send(embed);
-}, 'Creates an embed inside of the channel the message was sent in.', '!createembed <html color> <embed name> body', 'Deno: !createembed <#ff3b44> <Discord Info> This is the discord information');
+}, 'Creates an embed inside of the channel the message was sent in.', '!createembed <html color> <embed name> body', 'Deno: !createembed <#ff3b44> <Discord Info> This is the discord information', "Admin");

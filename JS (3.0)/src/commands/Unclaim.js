@@ -22,4 +22,4 @@ CommandHandler.RegisterNewCommand('unclaim', ['Everyone'], (msg) => {
 	} else {
 		BaseFunctions.EasyEmbedSend(channel, 'Command Error', 'You do not have the required permissions in this channel to use this command.')
 	}
-}, 'Unclaims the commission ticket that the message was sent in, only useable by Senior Model Maker+/The person that made the ticket.', '!unclaim', 'Deno: !unclaim');
+}, 'Unclaims the commission ticket that the message was sent in, only useable by Senior Model Maker+/The person that made the ticket.', '!unclaim', 'Deno: !unclaim', "Model Making");

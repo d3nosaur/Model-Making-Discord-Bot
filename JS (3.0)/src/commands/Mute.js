@@ -52,7 +52,7 @@ module.exports = (client) => {
         onJoin(member)
     })
     
-    CommandHandler.RegisterNewCommand('mute', ['Discord Admin'], async (msg, client) => {
+    CommandHandler.RegisterNewCommand('mute', ['Discord Admin', 'Admin', 'Advisor', 'Supervisor', 'Developer', 'Director', 'Division Leader'], async (msg, client) => {
         const content = msg.content
         const channel = msg.channel
         const guild = msg.guild
@@ -118,5 +118,5 @@ module.exports = (client) => {
         }
     
         BaseFunctions.EasyEmbedSend(channel, 'Command Info', 'Added ' + target.username + ' to the muted list');
-    }, 'Mutes a player for the time given.', '!mute <@Player> <duration> <duration type>', 'Deno: !mute @Sim 1 h'); 
+    }, 'Mutes a player for the time given.', '!mute <@Player> <duration> <duration type>', 'Deno: !mute @Sim 1 h', "Admin"); 
 }

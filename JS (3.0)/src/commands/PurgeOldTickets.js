@@ -16,4 +16,4 @@ CommandHandler.RegisterNewCommand('purgeoldtickets', ['Discord Admin'], (msg) =>
     });
 
     BaseFunctions.EasyEmbedSend(msg.channel, 'Bot Commands', 'Purged old tickets.');
-}, 'Removes all of the finished tickets.', '!purgeoldtickets', 'Deno: !purgeoldtickets');
+}, 'Removes all of the finished tickets.', '!purgeoldtickets', 'Deno: !purgeoldtickets', "Model Making");
